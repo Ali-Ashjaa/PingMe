@@ -7,7 +7,7 @@ import path from "path";
 
 import { connectDB } from "./lib/db.js";
 
-import authRoutes from "./routes/auth.route.js";
+import authRoutes from "./routes/authRoute.js";
 import messageRoute from "./routes/messageRoute.js";
 import { app, server } from "./lib/socket.js";
 
