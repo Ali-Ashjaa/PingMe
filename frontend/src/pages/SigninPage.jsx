@@ -10,7 +10,7 @@ const SigninPage = () => {
     password: ""
   })
 
-  const { login, isLoggingin } = useAuthStore()
+  const { login, isLoggingIn } = useAuthStore()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -88,13 +88,13 @@ const SigninPage = () => {
               {/* SignIn Button */}
               <button className="relative block  group mt-8 ml-2"
                 type="submit"
-                disabled={isLoggingin}>
+                disabled={isLoggingIn}>
 
                 <span className="absolute inset-0  bg-indigo-500  rounded-lg"></span>
                 <div className="transition bg-black relative border-2 rounded-lg group-hover:translate-x-1 group-hover:-translate-y-1">
                   <div className="p-2">
                     <p className="text-medium font-outerSans font-medium text-white">
-                      {isLoggingin ? (
+                      {isLoggingIn ? (
                         <>
                           <Loader2 className="size-5 animate-spin" />
                           Loading...
