@@ -77,7 +77,7 @@ const SignupPage = () => {
                 <label className="label mb-1">Email</label>
 
                 <div className="absolute left-3 flex items-center pointer-events-none z-10">
-                  <Mail className="w-5 h-10 text-gray-500" />
+                  <Mail className="w-5 h-12 text-gray-500" />
                 </div>
 
                 <input
