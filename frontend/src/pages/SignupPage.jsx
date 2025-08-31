@@ -120,12 +120,12 @@ const SignupPage = () => {
               </div>
 
               {/* SignUp Button */}
-              <button className="relative group mt-8"
+              <button className="relative group mt-8 ml-2"
                 type="submit"
                 disabled={isSigningUp}>
 
-                <span className="absolute inset-0  bg-indigo-500/70  rounded-lg"></span>
-                <div className="transition bg-black relative border-2 rounded-lg group-hover:-translate-x-2 group-hover:-translate-y-2">
+                <span className="absolute inset-0  bg-indigo-500/70  rounded-lg "></span>
+                <div className="transition bg-black relative border-2 rounded-lg group-hover:translate-x-2 group-hover:-translate-y-2">
                   <div className="p-2">
                     <p className="text-xl font-outerSans font-medium">
                       {isSigningUp ? (
