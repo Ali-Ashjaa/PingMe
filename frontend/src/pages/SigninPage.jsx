@@ -22,9 +22,9 @@ const SigninPage = () => {
       <div className="flex  justify-center p-6 sm:p-12 mt-4">
         <div className=" w-full max-w-md space-y-5">
           <div className="text-center">
-            <div className="flex flex-col items-center gap-2 group">
+            <div className="flex flex-col items-center  jusitfy-center gap-2 group">
               <div
-                className="mt-4 rounded-xl bg-primary/10 flex items-center justify-center 
+                className="mt-4 rounded-lg bg-primary/10 flex items-center justify-center 
               group-hover:bg-primary/20 transition-colors"
               >
                 <MessageSquare className="w-6 h-6 text-primary mt-2" />
