@@ -14,7 +14,8 @@ import { app, server } from "./lib/socket.js";
 dotenv.config();
 
 const PORT = process.env.PORT;
-const __dirname = path.resolve();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(express.json());
 app.use(cookieParser());
@@ -29,13 +30,13 @@ app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
+ 
   app.use(express.static("../frontend/dist"));
 
 
   app.get("*", (req, res) => {
     res.sendFile(path.resolve("../frontend/dist/index.html"));
   });
-
 }
 server.listen(PORT, () => {
   console.log("server is running on PORT:" + PORT);
