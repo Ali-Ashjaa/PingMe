@@ -7,32 +7,44 @@ import path from "path";
 
 import { connectDB } from "./lib/db.js";
 
-import authRoute from "./routes/authRoute.js";
+import authRoutes from "./routes/authRoute.js";
 import messageRoute from "./routes/messageRoute.js";
 import { app, server } from "./lib/socket.js";
 
 dotenv.config();
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
+
+// Simple path resolution for production
 const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.NODE_ENV === "production" 
+      ? process.env.FRONTEND_URL || "https://your-app-name.onrender.com"
+      : "http://localhost:5173",
     credentials: true,
   })
 );
 
-app.use("/api/auth", authRoute);
+app.use("/api/auth", authRoutes);
 app.use("/api/message", messageRoute);
 
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "frontend/dist")));
+  // Serve static files from the frontend build
+  const frontendDistPath = path.join(__dirname, "frontend/dist");
+  app.use(express.static(frontendDistPath));
 
+  // Catch-all handler: send back React's index.html file for any non-API routes
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve("frontend/dist/index.html"));
+    try {
+      res.sendFile(path.join(frontendDistPath, "index.html"));
+    } catch (error) {
+      console.error("Error serving frontend:", error);
+      res.status(500).send("Server Error");
+    }
   });
 }
 
