@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
         fullName: {
             type: String,
             required: true,
-            minLength: 4
+            minLength: 3
         },
 
         password: {
@@ -26,8 +26,8 @@ const userSchema = new mongoose.Schema(
         }
     },
 
-    { timestamps : true}
-    
+    { timestamps: true }
+
 )
 
 const User = mongoose.model("User", userSchema)

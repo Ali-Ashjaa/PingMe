@@ -13,7 +13,12 @@ export const signup = async (req, res) => {
 
         if (!fullName || !email || !password) {
             return res.status(400).json({ message: "All fields required!" })
+
         }
+       if (fullName.length < 3) {
+            return res.status(400).json({ message: "Full name must be at least 3 characters long" });
+        }
+
         if (user) return res.status(400).json({ message: "Email already exist!" })
 
         if (password.length < 6) {
@@ -51,11 +56,11 @@ export const signup = async (req, res) => {
 }
 
 export const signin = async (req, res) => {
-     console.log("req.body:", req.body);
+    console.log("req.body:", req.body);
     const { email, password } = req.body;
 
     try {
-        const user = await User.findOne({email})
+        const user = await User.findOne({ email })
         if (!user) {
             return res.status(400).json({ message: "Invalid Credentials!" })
         }
@@ -95,16 +100,16 @@ export const updateProfile = async (req, res) => {
         const userID = req.user._id
 
         if (!profilePic) {
-        return res.status(400).json({message: "Profile pic is required"})
+            return res.status(400).json({ message: "Profile pic is required" })
         }
-        
+
         const uploadResponse = await cloudinary.uploader.upload(profilePic)
-        const updatedUser = await User.findByIdAndUpdate(userID, {profilePic:uploadResponse.secure_url}, {new:true})
+        const updatedUser = await User.findByIdAndUpdate(userID, { profilePic: uploadResponse.secure_url }, { new: true })
         res.status(200).json(updatedUser)
 
     } catch (error) {
         console.log("Error in updating profile", error)
-        res.status(500).json({message:"Internal Server Error!"})
+        res.status(500).json({ message: "Internal Server Error!" })
     }
 }
 
@@ -114,6 +119,6 @@ export const checkAuth = (req, res) => {
         res.status(200).json(req.user)
     } catch (error) {
         console.log("Error in checkAuth controller", error.message)
-        res.status(500).json({message: "Internal Server Error"})
+        res.status(500).json({ message: "Internal Server Error" })
     }
 }
