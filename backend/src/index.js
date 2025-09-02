@@ -28,10 +28,13 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: [
+      "http://localhost:5173", 
+      "https://pingme-gpvh.onrender.com", //  frontend on Render
+    ],
     credentials: true,
   })
-);
+)
 
 app.use("/api/auth", authRoute);
 app.use("/api/message", messageRoute);
