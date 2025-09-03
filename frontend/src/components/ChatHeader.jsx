@@ -6,7 +6,7 @@ const ChatHeader = () => {
   const { selectedUser, setSelectedUser } = useChatStore();
   const { onlineUsers } = useAuthStore();
 
-  
+
   const isOnline = Array.isArray(onlineUsers) && selectedUser
     ? onlineUsers.includes(selectedUser._id)
     : false
@@ -24,12 +24,10 @@ const ChatHeader = () => {
           <span>{selectedUser?.fullName || "Unknown User"}</span>
 
           <p className="flex items-center">
-            {isOnline ? "Online" : "Offline"}
-
-            <button
-              className="pl-3"
-              onClick={() => setSelectedUser(null)}
-            >
+            {Array.isArray(onlineUsers) && onlineUsers.includes(selectedUser._id)
+              ? "Online"
+              : "Offline"}
+            <button className="pl-3" onClick={() => setSelectedUser(null)}>
               <X />
             </button>
           </p>
