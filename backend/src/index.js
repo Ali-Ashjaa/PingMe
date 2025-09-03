@@ -29,8 +29,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: [
-      "http://localhost:5173", 
-      "https://pingme-gpvh.onrender.com", //  frontend on Render
+      "http://localhost:5173",
     ],
     credentials: true,
   })

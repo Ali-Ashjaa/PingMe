@@ -6,7 +6,7 @@ import { io } from "socket.io-client"
 const baseUrl =
   import.meta.env.MODE === "development"
     ? "http://localhost:5001"
-    : "https://pingme-production-0f14.up.railway.app" 
+    : "/"
 
 export const useAuthStore = create((set, get) => ({
   authUser: null,
